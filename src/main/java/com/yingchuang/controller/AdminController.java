@@ -24,6 +24,8 @@ public class AdminController {
     @Resource
     private AdminService adminService;
 
+
+
 //    增加一条
     @ResponseBody
     @RequestMapping(value = "addAdmin",method = RequestMethod.POST,
@@ -93,6 +95,17 @@ public class AdminController {
         return "adminLogin";
     }
 
+
+    //去上传题目页面
+    @RequestMapping("toUpload")
+    public String toUpload(){
+        return "upload";
+    }
+
+//    @RequestMapping("uploadTest")
+//    public String uploadTest
+
+
     //按照id查询
     @ResponseBody
     @RequestMapping(value = "queryAdminById",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
@@ -100,4 +113,5 @@ public class AdminController {
         Admin queryAdmin = adminService.queryAdminById(id);
         return JSON.toJSONString(queryAdmin);
     }
+
 }
