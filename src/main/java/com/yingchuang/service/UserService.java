@@ -1,5 +1,6 @@
 package com.yingchuang.service;
 
+import com.github.pagehelper.PageInfo;
 import com.yingchuang.entity.Users;
 
 /**
@@ -14,4 +15,14 @@ public interface UserService {
 
     //用户根据手机号修改密码
     Integer updatePasswordByPhone(String phoneNum);
+
+    //查询列表
+    PageInfo<Users> queryUser(Integer pageNum, Integer pageSize);
+
+    //按照id查询
+    Users queryUserById(Integer id);
+
+    //按照id修改
+    Integer updateUserById(Users users);
+
 }

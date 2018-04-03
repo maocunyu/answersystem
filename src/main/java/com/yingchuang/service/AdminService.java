@@ -24,4 +24,7 @@ public interface AdminService {
     //登录
     public Admin login(String auserName, String apassword);
 
+    //按id查询
+    Admin queryAdminById(Integer id);
+
 }

@@ -95,6 +95,7 @@ public class AdminController {
         return "adminLogin";
     }
 
+
     //去上传题目页面
     @RequestMapping("toUpload")
     public String toUpload(){
@@ -105,7 +106,12 @@ public class AdminController {
 //    public String uploadTest
 
 
-
-
+    //按照id查询
+    @ResponseBody
+    @RequestMapping(value = "queryAdminById",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
+    public String queryAdminById(Integer id,Model model) {
+        Admin queryAdmin = adminService.queryAdminById(id);
+        return JSON.toJSONString(queryAdmin);
+    }
 
 }

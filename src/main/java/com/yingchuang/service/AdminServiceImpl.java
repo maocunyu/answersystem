@@ -49,5 +49,10 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.login(auserName, apassword);
     }
 
+    @Override
+    public Admin queryAdminById(Integer id) {
+        return adminMapper.queryAdminById(id);
+    }
+
 
 }
