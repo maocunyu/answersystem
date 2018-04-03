@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingchuang.dao.Test3Mapper">
+    <resultMap id="testmap" type="Test3">
+        <id column="id" property="id"></id>
+
+    </resultMap>
+
+
+
+
+    <insert id="addTest3" parameterType="Test3">
+        INSERT INTO test3 VALUES(0,#{question},#{answerA},#{answerB},#{answerC},#{answerD},#{rightAnswer},0,0,0,#{questionCode})
+    </insert>
+
+    <update id="updateStatus" parameterType="Test3">
+        UPDATE test3 SET STATUS=#{status} WHERE id=#{id}
+    </update>
+
+    <update id="updatePower" parameterType="Test3">
+        UPDATE test3 SET power=#{power} WHERE id=#{id}
+    </update>
+
+    <select id="queryTest1ByStatus" parameterType="Test3" resultType="com.yingchuang.entity.Test3">
+        SELECT * FROM test3  WHERE  STATUS=#{status}
+        <if test="power!=null and power!=''">
+            AND power =#{power}
+        </if>
+    </select>
+
+    <select id="queryTest1ById" parameterType="Integer" resultType="com.yingchuang.entity.Test3">
+        SELECT *  FROM test3  WHERE  id=#{id}
+    </select>
+
+</mapper>
