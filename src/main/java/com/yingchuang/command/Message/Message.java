@@ -12,6 +12,7 @@ public class Message {
         message.setCode("0000");
         message.setMsg("操作成功");
         return message;
+
     }
 
     public static Message error() {
