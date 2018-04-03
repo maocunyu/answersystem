@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <div th:insert="basic::basic"></div>
+    <script type="text/javascript">
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+    </script>
 </head>
 <body>
     <div class="row">
@@ -36,7 +42,9 @@
                     </div>
                 </form>
             </div>
-
+        </div>
+        <div class="row" align="center">
+            <h3 th:text="${msg}"></h3>
         </div>
     </div>
 

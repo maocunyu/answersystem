@@ -78,12 +78,16 @@ public class AdminController {
     public String login(String adminName, String apassword, HttpSession session, Model model) {
         Admin loginAdmin = adminService.login(adminName, apassword);
         if (loginAdmin != null) {
-            session.setAttribute("loginAdmin", loginAdmin);
-            if (loginAdmin.getPower().equals(0)) {
-                return "superAdmin";
-            } else {
-                return "admin";
+            if (loginAdmin.getStatus().equals(0)) {
+                session.setAttribute("loginAdmin", loginAdmin);
+                if (loginAdmin.getPower().equals(0)) {
+                    return "superAdmin";
+                } else {
+                    return "admin";
+                }
             }
+            model.addAttribute("msg", "该账号已冻结");
+            return "adminLogin";
         }
         model.addAttribute("msg", "用户名或密码输入错误！");
         return "adminLogin";
