@@ -23,6 +23,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Test1 {
     private Integer id,rightAnswer,status,power;
-    private String question,answerA,answerB,answerC,answerD;
+    private String question,answerA,answerB,answerC,answerD,questionCode;
     private Admin admin;
 }
