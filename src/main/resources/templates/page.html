@@ -10,7 +10,11 @@
         $(function () {
             $("li>a").click(function () {
                 var no=$(this).attr("no");
+<<<<<<< HEAD
                 var url=location.href.split("?")[0]+"?pageNum="+no+"&pageSize="+3;
+=======
+                var url=location.href.split("?")[0]+"?pageNum="+no+"&pageSize="+5;
+>>>>>>> origin/master
                 location.href=url;
             })
         })
@@ -71,10 +75,15 @@
                     <li th:if="${pageInfo.isLastPage==false}">
                         <a href="#" th:no="${pageInfo.pages}">末页</a>
                     </li>
+                    <li>
+                        <a th:no="${pageInfo.nextPage}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
         </div>
     </div>
 </div>
-
 </body>
 </html>
