@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="left">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+                <a href="#">超级管理员菜单</a>
+            </li>
+            <li>
+                <a th:href="@{/admin/queryAdminByStatus(pageNum=1,pageSize=3)}">管理员/审核员管理</a>
+            </li>
+            <li>
+                <a href="#">普通用户管理</a>
+            </li>
+            <li class="active">
+                <a href="#">管理员菜单</a>
+            </li>
+            <li>
+                <a href="#">题库管理</a>
+            </li>
+            <li>
+                <a href="#">管理员2</a>
+            </li>
+            <li class="active">
+                <a href="#">审核员菜单</a>
+            </li>
+            <li>
+                <a href="#">题库审核</a>
+            </li>
+            <li>
+                <a href="#">审核员2</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

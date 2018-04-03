@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="page">
+    <script type="text/javascript">
+        $(function () {
+            $("li>a").click(function () {
+                var no=$(this).attr("no");
+                var url=location.href.split("?")[0]+"?pageNum="+no+"&pageSize="+3;
+                location.href=url;
+            })
+        })
+    </script>
+
+    <div class="row">
+        <div class="col-md-4  col-md-offset-2">
+            <h5>
+                <!--<h5>共：<span th:text="${pageInfo.total}"/>条记录 共：<span th:text="${pageInfo.pages}"/>页</h5>-->
+                <span th:text="|共：${pageInfo.total}条记录 共：${pageInfo.pages}页|">
+            </h5>
+        </div>
+        <div class="col-md-6">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <!--首页不可用-->
+                    <li th:if="${pageInfo.isFirstPage}" class="disabled">
+                        <span>首页</span>
+                    </li>
+                    <!--首页可用-->
+                    <li th:if="${pageInfo.isFirstPage==false}">
+                        <a href="#" no="1">首页</a>
+                    </li>
+                    <!--前一页不可用-->
+                    <li th:if="${pageInfo.hasPreviousPage==false}" class="disabled">
+                        <span aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </span>
+                    </li>
+                    <!--前一页可用-->
+                    <li th:if="${pageInfo.hasPreviousPage}">
+                        <a th:no="${pageInfo.prePage}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <!--当前页-->
+                    <li th:each="no:${pageInfo.navigatepageNums}"
+                        th:class="${pageInfo.pageNum eq no}?'active':''">
+                        <a th:no="${no}" th:text="${no}"></a>
+                    </li>
+                    <!--后一页不可用-->
+                    <li th:if="${pageInfo.hasNextPage==false}" class="disabled">
+                        <span aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </span>
+                    </li>
+                    <!--后一页可用-->
+                    <li th:if="${pageInfo.hasNextPage}">
+                        <a  th:no="${pageInfo.nextPage}"  aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <!--末页不可用-->
+                    <li th:if="${pageInfo.isLastPage}" class="disabled">
+                        <span>末页</span>
+                    </li>
+                    <!--末页可用-->
+                    <li th:if="${pageInfo.isLastPage==false}">
+                        <a href="#" th:no="${pageInfo.pages}">末页</a>
+                    </li>
+            </nav>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
