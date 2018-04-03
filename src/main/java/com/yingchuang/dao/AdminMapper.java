@@ -1,6 +1,7 @@
 package com.yingchuang.dao;
 
 import com.yingchuang.entity.Admin;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface AdminMapper {
     public Integer updateAdminPowerById(Admin admin);
 
 //    查询所有by激活状态
-    public List<Admin> queryAdminByStatus(Integer status);
+    public List<Admin> queryAdminByStatus();
 
+    //登录
+    public Admin login(@Param("adminName") String adminName, @Param("apassword") String apassword);
 }

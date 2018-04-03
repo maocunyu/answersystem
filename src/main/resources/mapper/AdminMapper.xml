@@ -20,8 +20,11 @@
     </update>
 
     <!--查询所有by激活状态-->
-    <select id="queryAdminByStatus" parameterType="Integer" resultType="Admin">
-        SELECT * FROM admin where status=1
+    <select id="queryAdminByStatus" resultType="com.yingchuang.entity.Admin">
+        SELECT * FROM admin where status=0 order by id desc
     </select>
-
+    
+    <select id="login" parameterType="String" resultType="com.yingchuang.entity.Admin">
+        SELECT * FROM admin where adminName=#{adminName} and apassword=#{apassword}
+    </select>
 </mapper>

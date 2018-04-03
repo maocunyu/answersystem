@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by Max on 4-3-2018-003.
@@ -50,7 +51,7 @@ public class AdminController {
 
 //    修改权限byId
     @ResponseBody
-    @RequestMapping(value = "updateAdminStatusById",method = RequestMethod.POST,
+    @RequestMapping(value = "updateAdminPowerById",method = RequestMethod.POST,
             produces ="application/json;charset=utf-8")
     public String updateAdminPowerById(Admin admin){
         int n =adminService.updateAdminPowerById(admin);
@@ -61,14 +62,34 @@ public class AdminController {
     }
 
 //    查询所有by激活状态
-    @ResponseBody
-    @RequestMapping(value = "queryAdminByStatus",method = RequestMethod.GET,
-            produces = "application/json;charset=utf-8")
-    public String queryAdminByStatus(Integer status, Integer pageNum, Integer pageSize, Model model){
-        PageInfo<Admin> pageInfo=adminService.queryAdminByStatus(0,pageNum,pageSize);
+    @RequestMapping(value = "queryAdminByStatus",method = RequestMethod.GET)
+    public String queryAdminByStatus(Integer pageNum, Integer pageSize, Model model){
+        PageInfo<Admin> pageInfo=adminService.queryAdminByStatus(pageNum,pageSize);
         model.addAttribute("pageInfo",pageInfo);
         System.out.println(pageInfo);
-        return "grade";
+        return "listAdmin";
     }
 
+
+    //登录
+    @RequestMapping(value = "login",method = RequestMethod.POST)
+    public String login(String adminName, String apassword, HttpSession session, Model model) {
+        Admin loginAdmin = adminService.login(adminName, apassword);
+        if (loginAdmin != null) {
+            session.setAttribute("loginAdmin", loginAdmin);
+            if (loginAdmin.getPower().equals(0)) {
+                return "superAdmin";
+            } else {
+                return "admin";
+            }
+        }
+        model.addAttribute("msg", "用户名或密码输入错误！");
+        return "adminLogin";
+    }
+
+    //首页
+    @RequestMapping("toLogin")
+    public String toLogin() {
+        return "adminLogin";
+    }
 }
