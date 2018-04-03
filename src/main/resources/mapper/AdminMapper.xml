@@ -27,4 +27,8 @@
     <select id="login" parameterType="String" resultType="com.yingchuang.entity.Admin">
         SELECT * FROM admin where adminName=#{adminName} and apassword=#{apassword}
     </select>
+
+    <select id="queryAdminById" resultType="com.yingchuang.entity.Admin" parameterType="Integer">
+        select * from admin where id = #{id}
+    </select>
 </mapper>

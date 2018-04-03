@@ -92,4 +92,12 @@ public class AdminController {
     public String toLogin() {
         return "adminLogin";
     }
+
+    //按照id查询
+    @ResponseBody
+    @RequestMapping(value = "queryAdminById",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
+    public String queryAdminById(Integer id,Model model) {
+        Admin queryAdmin = adminService.queryAdminById(id);
+        return JSON.toJSONString(queryAdmin);
+    }
 }
