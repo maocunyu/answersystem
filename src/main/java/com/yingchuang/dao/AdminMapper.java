@@ -24,4 +24,7 @@ public interface AdminMapper {
 
     //登录
     public Admin login(@Param("adminName") String adminName, @Param("apassword") String apassword);
+
+    //按id查询
+    Admin queryAdminById(Integer id);
 }

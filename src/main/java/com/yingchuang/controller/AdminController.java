@@ -24,6 +24,8 @@ public class AdminController {
     @Resource
     private AdminService adminService;
 
+
+
 //    增加一条
     @ResponseBody
     @RequestMapping(value = "addAdmin",method = RequestMethod.POST,
@@ -76,12 +78,16 @@ public class AdminController {
     public String login(String adminName, String apassword, HttpSession session, Model model) {
         Admin loginAdmin = adminService.login(adminName, apassword);
         if (loginAdmin != null) {
-            session.setAttribute("loginAdmin", loginAdmin);
-            if (loginAdmin.getPower().equals(0)) {
-                return "superAdmin";
-            } else {
-                return "admin";
+            if (loginAdmin.getStatus().equals(0)) {
+                session.setAttribute("loginAdmin", loginAdmin);
+                if (loginAdmin.getPower().equals(0)) {
+                    return "superAdmin";
+                } else {
+                    return "admin";
+                }
             }
+            model.addAttribute("msg", "该账号已冻结");
+            return "adminLogin";
         }
         model.addAttribute("msg", "用户名或密码输入错误！");
         return "adminLogin";
@@ -92,4 +98,24 @@ public class AdminController {
     public String toLogin() {
         return "adminLogin";
     }
+
+
+    //去上传题目页面
+    @RequestMapping("toUpload")
+    public String toUpload(){
+        return "upload";
+    }
+
+//    @RequestMapping("uploadTest")
+//    public String uploadTest
+
+
+    //按照id查询
+    @ResponseBody
+    @RequestMapping(value = "queryAdminById",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
+    public String queryAdminById(Integer id,Model model) {
+        Admin queryAdmin = adminService.queryAdminById(id);
+        return JSON.toJSONString(queryAdmin);
+    }
+
 }
