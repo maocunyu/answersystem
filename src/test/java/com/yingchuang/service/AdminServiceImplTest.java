@@ -17,6 +17,10 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AdminServiceImplTest {
+    @Test
+    public void login() throws Exception {
+        System.out.println(adminService.login("superAdmin", "1234"));
+    }
 
     @Resource
     private AdminService adminService;
@@ -65,7 +69,7 @@ public class AdminServiceImplTest {
 //    查询所有by激活状态
     @Test
     public void queryAdminByStatus() throws Exception {
-        PageInfo<Admin> pageInfo = adminService.queryAdminByStatus(0,1,3);
+        PageInfo<Admin> pageInfo = adminService.queryAdminByStatus(1,4);
         List<Admin> list = pageInfo.getList();
         if (list!=null) {
             for (Admin admin : list) {

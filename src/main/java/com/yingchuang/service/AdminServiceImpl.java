@@ -38,10 +38,15 @@ public class AdminServiceImpl implements AdminService {
 
 //    查询所有by激活状态
     @Override
-    public PageInfo<Admin> queryAdminByStatus(Integer status, Integer pageNum, Integer pageSize) {
+    public PageInfo<Admin> queryAdminByStatus(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        List<Admin> list=adminMapper.queryAdminByStatus(0);
+        List<Admin> list=adminMapper.queryAdminByStatus();
         return new PageInfo<Admin>(list);
+    }
+
+    @Override
+    public Admin login(String auserName, String apassword) {
+        return adminMapper.login(auserName, apassword);
     }
 
 

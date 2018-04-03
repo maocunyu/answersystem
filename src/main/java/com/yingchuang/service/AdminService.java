@@ -19,6 +19,9 @@ public interface AdminService {
     public Integer updateAdminPowerById(Admin admin);
 
     //    查询所有by激活状态
-    public PageInfo<Admin> queryAdminByStatus(Integer status, Integer pageNum, Integer pageSize);
+    public PageInfo<Admin> queryAdminByStatus(Integer pageNum, Integer pageSize);
+
+    //登录
+    public Admin login(String auserName, String apassword);
 
 }
