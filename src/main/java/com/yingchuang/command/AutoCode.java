@@ -38,7 +38,7 @@ public class AutoCode {
         String answer= String.valueOf(test1.getRightAnswer());
         answer="0"+answer;
         String power="0"+test1.getPower();
-        String adminId= String.valueOf(test1.getAdmin().getId());
+        String adminId= String.valueOf(test1.getAdminId());
         if (adminId.length() < 2) {
             adminId="0"+adminId;
         }
@@ -56,7 +56,7 @@ public class AutoCode {
         String answer= String.valueOf(test2.getRightAnswer());
         answer="0"+answer;
         String power="0"+test2.getPower();
-        String adminId= String.valueOf(test2.getAdmin().getId());
+        String adminId= String.valueOf(test2.getAdminId());
         if (adminId.length() < 2) {
             adminId="0"+adminId;
         }
@@ -75,7 +75,7 @@ public class AutoCode {
         String answer= String.valueOf(test3.getRightAnswer());
         answer="0"+answer;
         String power="0"+test3.getPower();
-        String adminId= String.valueOf(test3.getAdmin().getId());
+        String adminId= String.valueOf(test3.getAdminId());
         if (adminId.length() < 2) {
             adminId="0"+adminId;
         }

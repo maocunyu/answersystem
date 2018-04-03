@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Test3 {
-    private Integer id,rightAnswer,status,power;
+    private Integer id,rightAnswer,status,power,adminId;
     private String question,answerA,answerB,answerC,answerD,questionCode;
-    private Admin admin;
+
 }
