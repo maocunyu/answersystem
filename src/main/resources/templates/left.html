@@ -17,6 +17,32 @@
                     </li>
                 </ul>
             </div>
+        <div th:if="${session.loginAdmin.power eq 1}">
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a th:href="@{/admin/toUpload}">上传题目</a>
+                </li>
+            </ul>
+        </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a th:href="@{/admin/queryAdminByStatus(pageNum=1,pageSize=4)}">审核test1题目</a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a th:href="@{/admin/queryAdminByStatus(pageNum=1,pageSize=4)}">审核test2题目</a>
+                </li>
+            </ul>
+
+        <div>
+            <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a th:href="@{/admin/queryAdminByStatus(pageNum=1,pageSize=4)}">审核test3题目</a>
+                </li>
+            </ul>
+        </div>
+
             <!--<li>
                 <a href="#">普通用户管理</a>
             </li>

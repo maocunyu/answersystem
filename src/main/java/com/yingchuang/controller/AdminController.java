@@ -24,6 +24,8 @@ public class AdminController {
     @Resource
     private AdminService adminService;
 
+
+
 //    增加一条
     @ResponseBody
     @RequestMapping(value = "addAdmin",method = RequestMethod.POST,
@@ -92,4 +94,18 @@ public class AdminController {
     public String toLogin() {
         return "adminLogin";
     }
+
+    //去上传题目页面
+    @RequestMapping("toUpload")
+    public String toUpload(){
+        return "upload";
+    }
+
+//    @RequestMapping("uploadTest")
+//    public String uploadTest
+
+
+
+
+
 }
