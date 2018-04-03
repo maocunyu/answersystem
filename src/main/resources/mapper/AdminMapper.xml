@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingchuang.dao.AdminMapper">
+
+    <!--添加一条-->
+    <insert id="addAdmin" parameterType="Admin">
+        INSERT INTO admin VALUE (0,#{adminName},#{apassword},#{power},now(),#{adminCode},0)
+    </insert>
+
+    <!--修改状态byId-->
+    <update id="updateAdminStatusById" parameterType="Admin">
+        UPDATE admin SET status=#{status} WHERE id=#{id}
+    </update>
+
+    <!--修改权限byId-->
+    <update id="updateAdminPowerById" parameterType="Admin">
+        UPDATE admin SET power=#{power} WHERE id=#{id}
+    </update>
+
+    <!--查询所有by激活状态-->
+    <select id="queryAdminByStatus" parameterType="Integer" resultType="Admin">
+        SELECT * FROM admin where status=1
+    </select>
+
+</mapper>
