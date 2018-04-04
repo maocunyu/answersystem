@@ -26,4 +26,9 @@ public interface UserMapper {
 
     //按照id修改
     Integer updateUserById(Users users);
+
+    //查询所有userid
+    List<Integer> queryAllUserid();
+
 }
+

@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
     public Integer updateUserById(Users users) {
         return userMapper.updateUserById(users);
     }
+
+    @Override
+    public List<Integer> queryAllUserid() {
+        return userMapper.queryAllUserid();
+    }
 }
