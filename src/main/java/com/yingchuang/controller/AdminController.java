@@ -79,6 +79,7 @@ public class AdminController {
         Admin loginAdmin = adminService.login(adminName, apassword);
         if (loginAdmin != null) {
             if (loginAdmin.getStatus().equals(0)) {
+                session.removeAttribute("loginUser");
                 session.setAttribute("loginAdmin", loginAdmin);
                 if (loginAdmin.getPower().equals(0)) {
                     return "superAdmin";
