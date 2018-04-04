@@ -28,7 +28,7 @@ public class RedisUpdateMysql {
     @Resource
     private UserService userService;
 
-    @Scheduled(cron = "0/5 * * * * *")
+    @Scheduled(cron = "* * * 1 * *")
     public void RedisToMysql(){
         //查redis
         System.out.println("定时任务");
