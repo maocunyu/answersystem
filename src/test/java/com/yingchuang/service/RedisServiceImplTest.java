@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/4/3.
@@ -29,7 +31,13 @@ public class RedisServiceImplTest {
 
     @Test
     public void queryRedis() throws Exception {
-        redisService.queryRedis(new RedisAnswerRecord(0,0,0,2,"testcode","testanswer","useranswer",null));
+        List<Integer> list=new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        List<RedisAnswerRecord> list1=redisService.queryRedis(list);
+        for (RedisAnswerRecord answerRecord : list1) {
+            System.out.println(answerRecord);
+        }
     }
 
 }
