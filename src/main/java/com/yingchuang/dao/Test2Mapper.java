@@ -23,5 +23,7 @@ public interface Test2Mapper {
     //根据ID查询
     public Test2 queryTest2ById(int id);
 
+    //根据等级查询
+    List<Test2> queryTest2ByPower(Integer power, Integer id);
 
 }
