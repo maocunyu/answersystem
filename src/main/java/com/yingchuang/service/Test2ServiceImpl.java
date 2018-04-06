@@ -33,7 +33,7 @@ public class Test2ServiceImpl implements Test2Service {
     }
 
     @Override
-    public PageInfo<Test2> queryTest1ByStatus(Integer pageNum, Integer pageSize, Test2 test2) {
+    public PageInfo<Test2> queryTest2ByStatus(Integer pageNum, Integer pageSize, Test2 test2) {
         PageHelper.startPage(pageNum,pageSize);
         List<Test2> list=test2Mapper.queryTest2ByStatus(test2);
         return new PageInfo<>(list);
@@ -42,5 +42,10 @@ public class Test2ServiceImpl implements Test2Service {
     @Override
     public Test2 queryTest2ById(int id) {
         return test2Mapper.queryTest2ById(id);
+    }
+
+    @Override
+    public List<Test2> queryTest2ByPower(Integer power, Integer id) {
+        return test2Mapper.queryTest2ByPower(power,id);
     }
 }

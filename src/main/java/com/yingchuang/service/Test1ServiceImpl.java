@@ -47,4 +47,9 @@ public class Test1ServiceImpl implements Test1Service {
     public Test1 queryTest1ById(int id) {
         return test1Mapper.queryTest1ById(id);
     }
+
+    @Override
+    public List<Test1> queryTest1ByPower(Integer power,Integer id) {
+        return test1Mapper.queryTest1ByPower(power,id);
+    }
 }

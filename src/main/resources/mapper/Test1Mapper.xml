@@ -26,14 +26,24 @@
     </update>
 
     <select id="queryTest1ByStatus" parameterType="Test1" resultType="com.yingchuang.entity.Test1">
-        SELECT * FROM test1  WHERE  STATUS=#{status}
-        <if test="power!=null and power!=''">
-            AND power =#{power}
+        SELECT * FROM test1 WHERE STATUS=#{status}
+        <if test="power != null and power != ''">
+            and power = #{power}
+        </if>
+        <if test="id!=null and id !=''">
+            and id =#{id}
         </if>
     </select>
 
     <select id="queryTest1ById" parameterType="Integer" resultType="com.yingchuang.entity.Test1">
         SELECT *  FROM test1  WHERE  id=#{id}
+    </select>
+
+    <select id="queryTest1ByPower" parameterType="integer" resultMap="testmap">
+        SELECT * FROM test1 WHERE status=1 and POWER=#{power}
+        <if test="id!=null and id !=''">
+            and id = #{id}
+        </if>
     </select>
 
 </mapper>
