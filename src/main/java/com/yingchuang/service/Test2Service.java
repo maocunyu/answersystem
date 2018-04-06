@@ -3,6 +3,8 @@ package com.yingchuang.service;
 import com.github.pagehelper.PageInfo;
 import com.yingchuang.entity.Test2;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/4/3.
  */
@@ -17,9 +19,11 @@ public interface Test2Service {
     public int updatePower(Test2 test2);
 
     //根据状态查询  //根据状态和等级查询
-    public PageInfo<Test2> queryTest1ByStatus(Integer pageNum, Integer pageSize, Test2 test2);
+    public PageInfo<Test2> queryTest2ByStatus(Integer pageNum, Integer pageSize, Test2 test2);
 
     //根据ID查询
     public Test2 queryTest2ById(int id);
 
+    //根据等级查询
+    List<Test2> queryTest2ByPower(Integer power, Integer id);
 }

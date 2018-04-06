@@ -34,7 +34,7 @@ public class Test3ServiceImpl implements Test3Service {
     }
 
     @Override
-    public PageInfo<Test3> queryTest1ByStatus(Integer pageNum, Integer pageSize, Test3 test3) {
+    public PageInfo<Test3> queryTest3ByStatus(Integer pageNum, Integer pageSize, Test3 test3) {
         PageHelper.startPage(pageNum,pageSize);
         List<Test3> list=test3Mapper.queryTest3ByStatus(test3);
         return new PageInfo<>(list);
@@ -43,5 +43,10 @@ public class Test3ServiceImpl implements Test3Service {
     @Override
     public Test3 queryTest3ById(int id) {
         return test3Mapper.queryTest3ById(id);
+    }
+
+    @Override
+    public List<Test3> queryTest3ByPower(Integer power, Integer id) {
+        return test3Mapper.queryTest3ByPower(power,id);
     }
 }

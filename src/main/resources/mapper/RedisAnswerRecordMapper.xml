@@ -15,7 +15,7 @@
     
     <select id="checkRecord" parameterType="com.yingchuang.entity.RedisAnswerRecord" resultType="com.yingchuang.entity.RedisAnswerRecord">
         SELECT * FROM answerrecord WHERE (testcode=#{testCode} AND testAnswer=#{testAnswer}
-AND userAnswer=#{userAnswer} AND userid = #{userId} AND testStyle=#{testStyle})
+        AND userAnswer=#{userAnswer} AND userid = #{userId} AND testStyle=#{testStyle})
     </select>
     
     

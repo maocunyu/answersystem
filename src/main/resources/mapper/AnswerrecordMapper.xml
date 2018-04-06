@@ -8,7 +8,7 @@
         <result property="id" column="id"></result>
         <association property="users" javaType="com.yingchuang.entity.Users"></association>
     </resultMap>
-   <select id="queryAll" resultMap="AnMap">
+   <select id="queryAnswerRecordById" resultMap="AnMap">
        SELECT * FROM answerrecord a,users u WHERE userid=#{userid} ORDER BY TIME DESC
    </select>
     <insert id="addAnswerrecord" parameterType="com.yingchuang.entity.AnswerRecord">
