@@ -10,8 +10,5 @@ public class AnswersystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AnswersystemApplication.class, args);
-
-
-
 	}
 }

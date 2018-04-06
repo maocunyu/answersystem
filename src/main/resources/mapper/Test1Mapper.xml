@@ -5,6 +5,8 @@
 <mapper namespace="com.yingchuang.dao.Test1Mapper">
     <resultMap id="testmap" type="Test1">
         <id column="id" property="id"></id>
+        <result column="question" property="question"></result>
+        <result column="answerA" property="answerA"></result>
 
     </resultMap>
     
