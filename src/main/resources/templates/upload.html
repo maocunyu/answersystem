@@ -8,8 +8,12 @@
 <script type="text/javascript">
     $(function () {
         $("#upload").click(function () {
-            var test=$("#testStyle option:selected").val();
-
+            var testStyle=$("#testStyle option:selected").val();
+            var test1=$("#uploadForm").serialize();
+            console.log(test1);
+            $.post("/test/uploadTest",{"test1":test1,"teststyle":testStyle},function (data) {
+                alert(data.msg);
+            })
 
 
 
@@ -39,7 +43,7 @@
                 <option value="1">test2</option>
                 <option value="2">test3</option>
             </select>
-            <form method="post" action="/">
+            <form id="uploadForm">
                 <div class="form-group">
                     题目
                     <input type="text" class="form-control" name="question" placeholder="Text input">
@@ -65,7 +69,7 @@
                     <input type="file" id="exampleInputFile">
                     <p class="help-block">Example block-level help text here.</p>
                 </div>
-                <select class="form-control" name="rightanswer">
+                <select class="form-control" name="rightAnswer">
                     <option>请选择正确答案</option>
                     <option value="0">A</option>
                     <option value="1">B</option>
