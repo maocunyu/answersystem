@@ -8,28 +8,19 @@
 <script type="text/javascript">
     $(function () {
         $("#upload").click(function () {
-            var testStyle=$("#testStyle option:selected").val();
-            var test1=$("#uploadForm").serialize();
-            console.log(test1);
-            $.post("/test/uploadTest",{"test1":test1,"teststyle":testStyle},function (data) {
-                alert(data.msg);
+            $.ajax({
+                type:"post",
+                dataType:"json",
+                data:$("#uploadForm").serialize(),
+                url:"/test/uploadTest",
+                success:function (data) {
+                    alert(data.msg);
+                }
             })
-
-
-
         })
 
-
-
-
-
     })
-
-
-
 </script>
-
-
 
 <body>
 <div class="container">
@@ -37,13 +28,13 @@
     <div class="row">
         <div th:insert="left"></div>
         <div class="col-md-8">
-            <select class="form-control" id="testStyle" >
-                <option value="-1">请选择试题类型</option>
-                <option value="0">test1</option>
-                <option value="1">test2</option>
-                <option value="2">test3</option>
-            </select>
             <form id="uploadForm">
+                <select class="form-control" id="testStyle" name="teststyle">
+                    <option value="-1">请选择试题类型</option>
+                    <option value="0">test1</option>
+                    <option value="1">test2</option>
+                    <option value="2">test3</option>
+                </select>
                 <div class="form-group">
                     题目
                     <input type="text" class="form-control" name="question" placeholder="Text input">
