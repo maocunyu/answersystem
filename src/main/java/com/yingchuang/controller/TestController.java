@@ -91,6 +91,7 @@ public class TestController {
             produces = {"application/json;charset=utf-8"})
     public String uploadTest(Test1 test1,Integer teststyle){
         System.out.println(test1);
+        System.out.println(teststyle);
         if(teststyle==0){
             int a=test1Service.addTest1(test1);
             if(a>0){

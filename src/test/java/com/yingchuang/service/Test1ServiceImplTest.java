@@ -22,6 +22,14 @@ public class Test1ServiceImplTest {
 
     @Test
     public void addTest1() throws Exception {
+        Test1 test1 = new Test1();
+        test1.setQuestion("question");
+        test1.setAnswerA("A");
+        test1.setAnswerB("B");
+        test1.setAnswerC("C");
+        test1.setAnswerD("D");
+        test1.setRightAnswer(0);
+        System.out.println(test1Service.addTest1(test1));
     }
 
     @Test
