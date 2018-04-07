@@ -22,7 +22,7 @@ public class RedisServiceImplTest {
 
     @Test
     public void addRedis() throws Exception {
-        redisService.addRedis(new RedisAnswerRecord(0,0,0,1,"BBBBBB","testanswer","useranswer",new Date()));
+        redisService.addRedis(new RedisAnswerRecord(0,0,0,1,"CCCCC","Aaaaaaa","TTTTT",new Date()));
     }
 
     @Test
@@ -34,7 +34,6 @@ public class RedisServiceImplTest {
     public void queryRedis() throws Exception {
         List<Integer> list=new ArrayList<>();
         list.add(1);
-        list.add(2);
         List<RedisAnswerRecord> list1=redisService.queryRedis(list);
         for (RedisAnswerRecord answerRecord : list1) {
             System.out.println(answerRecord);
