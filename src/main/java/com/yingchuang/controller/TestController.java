@@ -231,6 +231,7 @@ public class TestController {
             test2.setAnswerC(test1.getAnswerC());
             test2.setAnswerD(test1.getAnswerD());
             test2.setRightAnswer(test1.getRightAnswer());
+            test2.setPower(test1.getPower());
             int a=test2Service.addTest2(test2);
             if(a>0){
                 return JSON.toJSONString(Message.success());
@@ -245,6 +246,7 @@ public class TestController {
             test3.setAnswerC(test1.getAnswerC());
             test3.setAnswerD(test1.getAnswerD());
             test3.setRightAnswer(test1.getRightAnswer());
+            test3.setPower(test1.getPower());
             int a=test3Service.addTest3(test3);
             if(a>0){
                 return JSON.toJSONString(Message.success());

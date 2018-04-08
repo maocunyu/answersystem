@@ -28,7 +28,7 @@ public class RedisUpdateMysql {
     @Resource
     private UserService userService;
 
-    @Scheduled(cron = "* * 1 * * *")
+    @Scheduled(cron = "0/5 * * * * *")
     public void RedisToMysql(){
         //查redis
         System.out.println("定时任务");
@@ -43,7 +43,7 @@ public class RedisUpdateMysql {
             }
         }
     }
-    @Scheduled(cron = "* * 1 * * *")
+    @Scheduled(cron = "0/5 * * * * *")
     public void UpdateMySql(){
         List<RedisAnswerRecord> list=redisAnswerRecordService.queryAllAnswerRecord();
         for (RedisAnswerRecord redisAnswerRecord : list) {

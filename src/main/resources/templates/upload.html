@@ -17,6 +17,7 @@
                     alert(data.msg);
                 }
             })
+            location.href = location.href;
         })
 
     })
@@ -55,11 +56,18 @@
                     选项D
                     <input type="text" class="form-control" name="answerD" placeholder="Text input">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <input type="file" id="exampleInputFile">
-                    <p class="help-block">Example block-level help text here.</p>
-                </div>
+                <select class="form-control" name="power">
+                    <option>请选择试题等级</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
                 <select class="form-control" name="rightAnswer">
                     <option>请选择正确答案</option>
                     <option value="0">A</option>

@@ -53,9 +53,10 @@ public class Test1ServiceImpl implements Test1Service {
     @Override
 
     public PageInfo<Test1> queryAllTest1(Integer pageNum,Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
-        List<Test1> list=test1Mapper.queryAllTest1();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Test1> list = test1Mapper.queryAllTest1();
         return new PageInfo<Test1>(list);
+    }
 
     public List<Test1> queryTest1ByPower(Integer power,Integer id) {
         return test1Mapper.queryTest1ByPower(power,id);
