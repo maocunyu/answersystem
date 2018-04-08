@@ -34,4 +34,8 @@
         SELECT *  FROM test1  WHERE  id=#{id}
     </select>
 
+    <select id="queryAllTest1" resultMap="testmap">
+        SELECT * FROM test1 ORDER BY power,id
+    </select>
+
 </mapper>

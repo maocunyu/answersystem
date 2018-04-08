@@ -43,4 +43,11 @@ public class Test2ServiceImpl implements Test2Service {
     public Test2 queryTest2ById(int id) {
         return test2Mapper.queryTest2ById(id);
     }
+
+    @Override
+    public PageInfo<Test2> queryAllTest2(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<Test2> list=test2Mapper.queryAllTest2();
+        return new PageInfo<Test2>(list);
+    }
 }

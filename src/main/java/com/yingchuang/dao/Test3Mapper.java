@@ -1,6 +1,6 @@
 package com.yingchuang.dao;
 
-import com.yingchuang.entity.Test1;
+import com.yingchuang.entity.Test2;
 import com.yingchuang.entity.Test3;
 
 import java.util.List;
@@ -24,5 +24,7 @@ public interface Test3Mapper {
     //根据ID查询
     public Test3 queryTest3ById(int id);
 
+    //查询所有
+    public List<Test3> queryAllTest3();
 
 }

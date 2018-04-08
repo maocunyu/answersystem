@@ -22,6 +22,7 @@ public interface Test3Service {
     //根据ID查询
     public Test3 queryTest3ById(int id);
 
-
+    //查询所有
+    public PageInfo<Test3> queryAllTest3(Integer pageNum, Integer pageSize);
 
 }

@@ -22,4 +22,6 @@ public interface Test2Service {
     //根据ID查询
     public Test2 queryTest2ById(int id);
 
+    //查询所有
+    public PageInfo<Test2> queryAllTest2(Integer pageNum, Integer pageSize);
 }

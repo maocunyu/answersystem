@@ -23,5 +23,8 @@ public interface Test2Mapper {
     //根据ID查询
     public Test2 queryTest2ById(int id);
 
+    //查询所有
+    public List<Test2> queryAllTest2();
+
 
 }
