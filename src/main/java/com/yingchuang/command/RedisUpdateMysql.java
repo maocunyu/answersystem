@@ -41,10 +41,24 @@ public class RedisUpdateMysql {
             }else{
                 redisAnswerRecordService.addAnswerRecord(redisAnswerRecord);
             }
-
         }
-        //存入mysql
+    }
+    @Scheduled(cron = "0/5 * * * * *")
+    public void UpdateMySql(){
+        List<RedisAnswerRecord> list=redisAnswerRecordService.queryAllAnswerRecord();
+        for (RedisAnswerRecord redisAnswerRecord : list) {
+            String testCode=redisAnswerRecord.getTestCode();
+            String[] testId=testCode.split(",");
+            if(testId.length!=20){
+                System.out.println("删除不符合长度的数据");
+                redisAnswerRecordService.deleteRecordById(redisAnswerRecord.getId());
+            }
+        }
 
     }
+
+
+
+
 
 }

@@ -11,5 +11,6 @@ public interface RedisAnswerRecordMapper {
     public int addAnswerRecord(RedisAnswerRecord redisAnswerRecord);
     public List<RedisAnswerRecord> queryAllAnswerRecord();
     public RedisAnswerRecord checkRecord(RedisAnswerRecord redisAnswerRecord);
+    public int deleteRecordById(Integer id);
 
 }

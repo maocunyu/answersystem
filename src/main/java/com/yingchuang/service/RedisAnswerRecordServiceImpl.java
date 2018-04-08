@@ -31,4 +31,9 @@ public class RedisAnswerRecordServiceImpl implements RedisAnswerRecordService {
     public RedisAnswerRecord checkRecord(RedisAnswerRecord redisAnswerRecord) {
         return redisAnswerRecordMapper.checkRecord(redisAnswerRecord);
     }
+
+    @Override
+    public int deleteRecordById(Integer id) {
+        return redisAnswerRecordMapper.deleteRecordById(id);
+    }
 }
