@@ -7,7 +7,7 @@ import com.yingchuang.entity.UsersNum;
  */
 public interface UsersNumMapper {
     //查询admin数量
-    UsersNum queryUsersNum();
+    Integer queryUsersNum();
 
     //修改admin  自增
     Integer updateUsersNum();
