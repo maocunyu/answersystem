@@ -8,11 +8,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by msi on 2018/4/5.
+
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,6 +23,15 @@ public class Test1ServiceImplTest {
     private Test1Service test1Service;
 
     @Test
+
+    public void queryAllTest1() throws Exception {
+        PageInfo<Test1> pageInfo=test1Service.queryAllTest1(1,3);
+        List<Test1> list=pageInfo.getList();
+        if (list!=null) {
+            for (Test1 test1 : list) {
+                System.out.println(test1);
+            }
+
     public void addTest1() throws Exception {
         Test1 test1 = new Test1();
         test1.setQuestion("question");
@@ -63,6 +74,7 @@ public class Test1ServiceImplTest {
         for (int i =0;i<10;i++) {
             Test1 test = test1Service.queryTest1ById(listInt.get((int) (Math.random() * listInt.size())));
             System.out.println(test);
+
         }
     }
 

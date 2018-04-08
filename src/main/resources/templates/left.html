@@ -27,17 +27,17 @@
             <div th:if="${session.loginAdmin.power ne 0}">
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="#">审核test1题目</a>
+                        <a th:href="@{/test1/queryAllTest1(pageNum=1,pageSize=4)}">审核test1题目</a>
                     </li>
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="#">审核test2题目</a>
+                        <a th:href="@{/test2/queryAllTest2(pageNum=1,pageSize=4)}">审核test2题目</a>
                     </li>
                 </ul>
                 <ul class="nav nav-pills nav-stacked">
                     <li>
-                        <a href="#">审核test3题目</a>
+                        <a th:href="@{/test3/queryAllTest3(pageNum=1,pageSize=4)}">审核test3题目</a>
                     </li>
                 </ul>
             </div>

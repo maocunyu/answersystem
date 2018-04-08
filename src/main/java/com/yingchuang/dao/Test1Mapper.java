@@ -23,8 +23,15 @@ public interface Test1Mapper {
     //根据ID查询
     public Test1 queryTest1ById(int id);
 
+
+    //查询所有
+    public List<Test1> queryAllTest1();
+
+
+
     //根据等级和Id查询
     List<Test1> queryTest1ByPower(Integer power,Integer id);
+
 
 
 }

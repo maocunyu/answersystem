@@ -24,8 +24,13 @@ public interface Test1Service {
     //根据ID查询
     public Test1 queryTest1ById(int id);
 
+
+    //查询所有
+    public PageInfo<Test1> queryAllTest1(Integer pageNum,Integer pageSize);
+
     //根据等级查询
     List<Test1> queryTest1ByPower(Integer power, Integer id);
+
 
 
 
