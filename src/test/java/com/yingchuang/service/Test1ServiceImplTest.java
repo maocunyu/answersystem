@@ -25,13 +25,14 @@ public class Test1ServiceImplTest {
     @Test
 
     public void queryAllTest1() throws Exception {
-        PageInfo<Test1> pageInfo=test1Service.queryAllTest1(1,3);
-        List<Test1> list=pageInfo.getList();
-        if (list!=null) {
+        PageInfo<Test1> pageInfo = test1Service.queryAllTest1(1, 3);
+        List<Test1> list = pageInfo.getList();
+        if (list != null) {
             for (Test1 test1 : list) {
                 System.out.println(test1);
             }
-
+        }
+    }
     public void addTest1() throws Exception {
         Test1 test1 = new Test1();
         test1.setQuestion("question");

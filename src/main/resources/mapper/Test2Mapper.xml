@@ -12,11 +12,11 @@
 
 
     <insert id="addTest2" parameterType="Test2">
-        INSERT INTO test2 VALUES(0,#{question},#{answerA},#{answerB},#{answerC},#{answerD},#{rightAnswer},0,0,0,#{questionCode})
+        INSERT INTO test2 VALUES(0,#{question},#{answerA},#{answerB},#{answerC},#{answerD},#{rightAnswer},0,0,#{power},#{questionCode})
     </insert>
 
     <update id="updateStatus" parameterType="Test2">
-        UPDATE test2 SET STATUS=#{status} WHERE id=#{id}
+        UPDATE test2 SET STATUS=#{status},adminId=#{adminId} WHERE id=#{id}
     </update>
 
     <update id="updatePower" parameterType="Test2">
@@ -39,7 +39,7 @@
 
 
     <select id="queryAllTest2" resultMap="testmap">
-        SELECT * FROM test2 ORDER BY power,id
+        SELECT * FROM test2 ORDER BY id DESC
     </select>
 
 

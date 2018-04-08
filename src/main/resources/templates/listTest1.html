@@ -67,7 +67,7 @@
                     <td>选项D</td>
                     <td>答案</td>
                     <td>等级</td>
-                    <td>上传ID</td>
+                    <td>审核ID</td>
                     <td>审核状态</td>
                     <td>操作</td>
                 </tr>
@@ -139,6 +139,7 @@
                                 <input type="radio" name="status" value="0"><span style="color: blue">未审核</span>
                                 <input type="radio" name="status" value="1"><span style="color: green">已审核</span>
                                 <input type="radio" name="status" value="2"><span style="color: red">未通过</span>
+                                <input type="hidden" name="adminId" th:value="${session.loginAdmin.id}">
                             </td>
                         </tr>
                     </table>

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yingchuang.dao.AdminNumMapper">
     <select id="queryAdminNum" resultType="Integer">
-        select adminNum FROM adminnum
+        select adminNum FROM adminnum where id=1
     </select>
 
     <update id="updateAdminNum">

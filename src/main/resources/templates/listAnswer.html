@@ -33,8 +33,18 @@
                 <td th:text="${test.answerB}"></td>
                 <td th:text="${test.answerC}"></td>
                 <td th:text="${test.answerD}"></td>
-                <td th:text="${test.rightAnswer}"></td>
-                <td th:text="${test.userAnswer}"></td>
+                <td>
+                    <span th:if="${test.rightAnswer eq 0}">A</span>
+                    <span th:if="${test.rightAnswer eq 1}">B</span>
+                    <span th:if="${test.rightAnswer eq 2}">C</span>
+                    <span th:if="${test.rightAnswer eq 3}">D</span>
+                </td>
+                <td>
+                    <span th:if="${test.userAnswer eq '0'}">A</span>
+                    <span th:if="${test.userAnswer eq '1'}">B</span>
+                    <span th:if="${test.userAnswer eq '2'}">C</span>
+                    <span th:if="${test.userAnswer eq '3'}">D</span>
+                </td>
             </tr>
             </table>
 
