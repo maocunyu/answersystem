@@ -18,5 +18,8 @@
         AND userAnswer=#{userAnswer} AND userid = #{userId} AND testStyle=#{testStyle})
     </select>
     
+    <delete id="deleteRecordById">
+        delete from answerrecord where id=#{id}
+    </delete>
     
 </mapper>
