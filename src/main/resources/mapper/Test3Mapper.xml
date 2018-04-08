@@ -23,7 +23,7 @@
         UPDATE test3 SET power=#{power} WHERE id=#{id}
     </update>
 
-    <select id="queryTest1ByStatus" parameterType="Test3" resultType="com.yingchuang.entity.Test3">
+    <select id="queryTest3ByStatus" parameterType="Test3" resultType="com.yingchuang.entity.Test3">
         SELECT * FROM test3  WHERE  STATUS=#{status}
         <if test="power!=null and power!=''">
             AND power =#{power}
@@ -33,7 +33,7 @@
         </if>
     </select>
 
-    <select id="queryTest1ById" parameterType="Integer" resultType="com.yingchuang.entity.Test3">
+    <select id="queryTest3ById" parameterType="Integer" resultType="com.yingchuang.entity.Test3">
         SELECT *  FROM test3  WHERE  id=#{id}
     </select>
 
