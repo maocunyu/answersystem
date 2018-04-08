@@ -109,7 +109,7 @@ public class TestController {
             }
         }
         for (Integer integer : listInt) {
-            System.out.print(integer);
+            System.out.print(integer+",");
         }
         Test1 test1 = test1Service.queryTest1ById(listInt.get((int) (Math.random() * listInt.size())));
         return test1;
