@@ -22,12 +22,12 @@ public class RedisServiceImplTest {
 
     @Test
     public void addRedis() throws Exception {
-        redisService.addRedis(new RedisAnswerRecord(0,0,0,1,"CCCCC","Aaaaaaa","TTTTT",new Date()));
+        redisService.addRedis(new RedisAnswerRecord(0,20,0,2,"1,2,3,4,5,6,1,1,1,1","1,1,1,1,1,1,1,1,1,1","1,1,1,1,1,1,1,1,1,1",new Date()));
     }
 
     @Test
     public void updateRedis() throws Exception {
-        redisService.updateRedis(new RedisAnswerRecord(0,0,0,1,"AAAAAAA","testanswer","useranswer",null));
+        redisService.updateRedis(new RedisAnswerRecord(0,0,0,2,"1,2,3,4,5,6,1,1,1,1","1,1,1,1,1,1,1,1,1,1","1,1,1,1,1,1,1,1,1,1",null));
     }
 
     @Test
