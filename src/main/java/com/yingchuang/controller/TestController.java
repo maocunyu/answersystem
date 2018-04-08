@@ -93,6 +93,7 @@ public class TestController {
             for (int i = 0; i < idsString.length; i++) {
                 idsInt[i] = Integer.valueOf(idsString[i]);
             }
+
             for (Test1 test1 : list) {
                 listInt.add(test1.getId());
             }
@@ -102,6 +103,7 @@ public class TestController {
                         listInt.remove(y);
                     }
                 }
+
             }
         } else {
             for (Test1 test11 : list) {

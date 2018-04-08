@@ -2,6 +2,7 @@ package com.yingchuang.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yingchuang.command.AutoCode;
 import com.yingchuang.dao.Test2Mapper;
 import com.yingchuang.entity.Test2;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,12 @@ public class Test2ServiceImpl implements Test2Service {
     @Resource
     private Test2Mapper test2Mapper;
 
+    private AutoCode autoCode;
+
     @Override
     public int addTest2(Test2 test2) {
+        String testCode=autoCode.autoTest2Code(test2);
+        test2.setQuestionCode(testCode);
         return test2Mapper.addTest2(test2);
     }
 

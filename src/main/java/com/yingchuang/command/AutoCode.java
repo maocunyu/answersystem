@@ -7,7 +7,7 @@ import com.yingchuang.entity.*;
  */
 public class AutoCode {
 
-    public String autoAdminCode(Admin admin,int adminNum) {
+    public String autoAdminCode(Admin admin,Integer adminNum) {
         String id = String.valueOf(admin.getId());
         if (id.length() < 4) {
             for (int i = 1; i < 4 - id.length(); i++) {
