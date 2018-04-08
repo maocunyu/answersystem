@@ -2,12 +2,12 @@ package com.yingchuang.service;
 
 import com.github.pagehelper.PageInfo;
 import com.yingchuang.entity.Test1;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/4/3.
  */
-@Service
 public interface Test1Service {
     //添加
     public int addTest1(Test1 test1);
@@ -24,8 +24,14 @@ public interface Test1Service {
     //根据ID查询
     public Test1 queryTest1ById(int id);
 
+
     //查询所有
     public PageInfo<Test1> queryAllTest1(Integer pageNum,Integer pageSize);
+
+    //根据等级查询
+    List<Test1> queryTest1ByPower(Integer power, Integer id);
+
+
 
 
 }

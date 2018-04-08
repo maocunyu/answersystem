@@ -24,7 +24,12 @@ public interface Test3Mapper {
     //根据ID查询
     public Test3 queryTest3ById(int id);
 
+
     //查询所有
     public List<Test3> queryAllTest3();
+
+
+    //根据等级查询
+    List<Test3> queryTest3ByPower(Integer power ,Integer id);
 
 }

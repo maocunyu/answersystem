@@ -69,4 +69,15 @@ public class UserController {
         }
         return JSON.toJSONString(Message.failed());
     }
+
+    //用户注册
+    @ResponseBody
+    @RequestMapping(value = "addUser",method = RequestMethod.POST,produces = {"application/json;charset=utf-8"})
+    public String addUser(Users users) {
+        int rows = userService.addUser(users);
+        if (rows > 0) {
+            return JSON.toJSONString(Message.success());
+        }
+        return JSON.toJSONString(Message.failed());
+    }
 }

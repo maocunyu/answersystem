@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingchuang.dao.RedisAnswerRecordMapper">
+    
+    
+    <insert id="addAnswerRecord" parameterType="RedisAnswerRecord">
+        INSERT INTO answerrecord VALUES(0,#{testCode},#{testAnswer},#{userAnswer},#{score},#{userId},NOW(),#{testStyle})
+    </insert>
+
+    <select id="queryAllAnswerRecord" resultType="com.yingchuang.entity.RedisAnswerRecord">
+        SELECT * FROM answerrecord
+    </select>
+    
+    <select id="checkRecord" parameterType="com.yingchuang.entity.RedisAnswerRecord" resultType="com.yingchuang.entity.RedisAnswerRecord">
+        SELECT * FROM answerrecord WHERE (testcode=#{testCode} AND testAnswer=#{testAnswer}
+        AND userAnswer=#{userAnswer} AND userid = #{userId} AND testStyle=#{testStyle})
+    </select>
+    
+    <delete id="deleteRecordById">
+        delete from answerrecord where id=#{id}
+    </delete>
+    
+</mapper>

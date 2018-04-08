@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by msi on 2018/4/3.
@@ -13,6 +14,14 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceImplTest {
+    @Test
+    public void queryAllUserid() throws Exception {
+        List<Integer> list=userService.queryAllUserid();
+        for (Integer integer : list) {
+            System.out.println(integer);
+        }
+    }
+
     @Resource
     private UserService userService;
     @Test

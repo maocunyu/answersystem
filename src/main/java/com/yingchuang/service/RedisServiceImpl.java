@@ -54,19 +54,24 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void queryRedis(RedisAnswerRecord redisAnswerRecord) {
+    public List<RedisAnswerRecord> queryRedis(List<Integer> userid) {
         HashOperations hashOperations=stringRedisTemplate.opsForHash();
         List<RedisAnswerRecord> list=new ArrayList<>();
-        long redisSize= hashOperations.size("answerRecord:"+redisAnswerRecord.getUserId());
-        for(int i=1;i<redisSize;i++){
-           RedisAnswerRecord query=JSON.parseObject((String) hashOperations.get("answerRecord:"+redisAnswerRecord.getUserId(),String.valueOf(i)),RedisAnswerRecord.class);
+        for (Integer integer : userid) {
+        long redisSize= hashOperations.size("answerRecord:"+integer);
+        for(int i=1;i<redisSize+1;i++){
+           RedisAnswerRecord query=JSON.parseObject((String) hashOperations.get("answerRecord:"+integer,String.valueOf(i)),RedisAnswerRecord.class);
             list.add(query);
         }
-
-        for (RedisAnswerRecord answerRecord : list) {
-            System.out.println(answerRecord);
         }
+        return list;
+    }
 
-
+    @Override
+    public RedisAnswerRecord queryRedisByKey(String userid, String key) {
+        HashOperations hashOperations=stringRedisTemplate.opsForHash();
+        RedisAnswerRecord redisAnswerRecord=new RedisAnswerRecord();
+        redisAnswerRecord=JSON.parseObject((String) hashOperations.get("answerRecord:"+userid,key),RedisAnswerRecord.class);
+        return redisAnswerRecord;
     }
 }

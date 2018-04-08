@@ -28,14 +28,26 @@
         <if test="power!=null and power!=''">
             AND power =#{power}
         </if>
+        <if test="id!=null and id !=''">
+            and id =#{id}
+        </if>
     </select>
 
     <select id="queryTest3ById" parameterType="Integer" resultType="com.yingchuang.entity.Test3">
         SELECT *  FROM test3  WHERE  id=#{id}
     </select>
 
+
     <select id="queryAllTest3" resultMap="testmap">
         SELECT * FROM test3 ORDER BY power,id
+    </select>
+
+
+    <select id="queryTest3ByPower" parameterType="integer" resultMap="testmap">
+        SELECT * FROM test3 WHERE status=1 and POWER=#{power}
+        <if test="id!=null and id !=''">
+            and id = #{id}
+        </if>
     </select>
 
 </mapper>

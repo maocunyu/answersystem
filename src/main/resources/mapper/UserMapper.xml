@@ -15,7 +15,7 @@
     </select>
 
     <insert id="addUser" parameterType="Users">
-        INSERT INTO users VALUES(NULL,#{userName},#{password},#{userCode},#{phoneNum},NOW(),1)
+        INSERT INTO users VALUES(NULL,#{userName},#{password},#{userCode},#{phoneNum},NOW(),0)
     </insert>
 
     <update id="updatePasswordByPhone" parameterType="String">
@@ -33,4 +33,9 @@
     <update id="updateUserById" parameterType="Users">
         update users set status=#{status} where id =#{id}
     </update>
+    
+    <select id="queryAllUserid" resultType="Integer">
+        SELECT id FROM users
+    </select>
+    
 </mapper>

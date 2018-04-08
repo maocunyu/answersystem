@@ -5,7 +5,8 @@
 <mapper namespace="com.yingchuang.dao.Test1Mapper">
     <resultMap id="testmap" type="Test1">
         <id column="id" property="id"></id>
-
+        <result column="question" property="question"></result>
+        <result column="answerA" property="answerA"></result>
     </resultMap>
     
 
@@ -24,9 +25,12 @@
     </update>
 
     <select id="queryTest1ByStatus" parameterType="Test1" resultType="com.yingchuang.entity.Test1">
-        SELECT * FROM test1  WHERE  STATUS=#{status}
-        <if test="power!=null and power!=''">
-            AND power =#{power}
+        SELECT * FROM test1 WHERE STATUS=#{status}
+        <if test="power != null and power != ''">
+            and power = #{power}
+        </if>
+        <if test="id!=null and id !=''">
+            and id =#{id}
         </if>
     </select>
 
@@ -34,8 +38,17 @@
         SELECT *  FROM test1  WHERE  id=#{id}
     </select>
 
+
     <select id="queryAllTest1" resultMap="testmap">
         SELECT * FROM test1 ORDER BY power,id
+      </select>
+
+    <select id="queryTest1ByPower" parameterType="integer" resultMap="testmap">
+        SELECT * FROM test1 WHERE status=1 and POWER=#{power}
+        <if test="id!=null and id !=''">
+            and id = #{id}
+        </if>
+
     </select>
 
 </mapper>

@@ -2,7 +2,9 @@ package com.yingchuang.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.yingchuang.command.AutoCode;
 import com.yingchuang.dao.UserMapper;
+import com.yingchuang.dao.UsersNumMapper;
 import com.yingchuang.entity.Users;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private UsersNumMapper usersNumMapper;
+
     @Override
     public Users queryUserByUserNameAndPassword(String userName, String password) {
         return userMapper.queryUserByUserNameAndPassword(userName,password);
@@ -25,6 +30,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer addUser(Users users) {
+        AutoCode autoCode=new AutoCode();
+        usersNumMapper.updateUsersNum();
+        String userCode=autoCode.autoUsersCode(users,usersNumMapper.queryUsersNum());
+        users.setUserCode(userCode);
         return userMapper.addUser(users);
     }
 
@@ -48,5 +57,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer updateUserById(Users users) {
         return userMapper.updateUserById(users);
+    }
+
+    @Override
+    public List<Integer> queryAllUserid() {
+        return userMapper.queryAllUserid();
     }
 }

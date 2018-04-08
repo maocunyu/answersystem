@@ -3,6 +3,8 @@ package com.yingchuang.service;
 import com.github.pagehelper.PageInfo;
 import com.yingchuang.entity.Users;
 
+import java.util.List;
+
 /**
  * Created by msi on 2018/4/3.
  */
@@ -24,5 +26,8 @@ public interface UserService {
 
     //按照id修改
     Integer updateUserById(Users users);
+
+    //查询所有userid
+    List<Integer> queryAllUserid();
 
 }
