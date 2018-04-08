@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,8 @@ public class RedisServiceImplTest {
 
     @Test
     public void addRedis() throws Exception {
-        redisService.addRedis(new RedisAnswerRecord(0,0,0,1,"BBBBBB","testanswer","useranswer",new Date()));
+        String date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+        redisService.addRedis(new RedisAnswerRecord(0, 0, 0, 1, "BBBBBB", "testanswer", "useranswer", new Date()));
     }
 
     @Test
