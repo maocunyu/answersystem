@@ -66,4 +66,12 @@ public class RedisServiceImpl implements RedisService {
         }
         return list;
     }
+
+    @Override
+    public RedisAnswerRecord queryRedisByKey(String userid, String key) {
+        HashOperations hashOperations=stringRedisTemplate.opsForHash();
+        RedisAnswerRecord redisAnswerRecord=new RedisAnswerRecord();
+        redisAnswerRecord=JSON.parseObject((String) hashOperations.get("answerRecord:"+userid,key),RedisAnswerRecord.class);
+        return redisAnswerRecord;
+    }
 }

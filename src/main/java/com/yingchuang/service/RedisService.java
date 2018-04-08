@@ -11,6 +11,7 @@ public interface RedisService {
     public void addRedis(RedisAnswerRecord redisAnswerRecord);
     public void updateRedis(RedisAnswerRecord redisAnswerRecord);
     public List<RedisAnswerRecord> queryRedis(List<Integer> userid);
+    public RedisAnswerRecord queryRedisByKey(String userid,String key);
 
 
 }
