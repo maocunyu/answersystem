@@ -18,10 +18,11 @@ public class Test1ServiceImpl implements Test1Service {
     @Resource
     private Test1Mapper test1Mapper;
 
-    private AutoCode autoCode;
+
 
     @Override
     public int addTest1(Test1 test1) {
+        AutoCode autoCode=new AutoCode();
         String testCode=autoCode.autoTest1Code(test1);
         test1.setQuestionCode(testCode);
         return test1Mapper.addTest1(test1);

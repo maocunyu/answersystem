@@ -54,13 +54,16 @@ public class AnswerRecordController {
         String[] testCode=redisAnswerRecord.getTestCode().split(",");
         String[] userAnswer=redisAnswerRecord.getUserAnswer().split(",");
         List<ShowTest> tList=new ArrayList<>();
-        ShowTest showTest=new ShowTest();
-        if(testCode.length<10){
+
+        if(testCode.length<20){
             return "user";
-        }else{
+        }
         if(redisAnswerRecord.getTestStyle()==0){
-            for(int i=0;i<10;i++){
-                Test1 test1=test1Service.queryTest1ById(Integer.parseInt(testCode[i]));
+
+            for(int i=0;i<20;i++){
+                Test1 test1=new Test1();
+                test1=test1Service.queryTest1ById(Integer.parseInt(testCode[i]));
+                ShowTest showTest=new ShowTest();
                 showTest.setAdminId(test1.getAdminId());
                 showTest.setAnswerA(test1.getAnswerA());
                 showTest.setAnswerB(test1.getAnswerB());
@@ -75,8 +78,10 @@ public class AnswerRecordController {
                 showTest.setUserAnswer(userAnswer[i]);
                 tList.add(showTest);
             }
-        }else if(redisAnswerRecord.getTestStyle()==1){
-            for(int i=0;i<10;i++){
+        }
+        else if(redisAnswerRecord.getTestStyle()==1){
+            for(int i=0;i<20;i++){
+                ShowTest showTest=new ShowTest();
                 Test2 test2=test2Service.queryTest2ById(Integer.parseInt(testCode[i]));
                 showTest.setAdminId(test2.getAdminId());
                 showTest.setAnswerA(test2.getAnswerA());
@@ -93,7 +98,8 @@ public class AnswerRecordController {
                 tList.add(showTest);
             }
         }else if(redisAnswerRecord.getTestStyle()==2){
-            for(int i=0;i<10;i++){
+            for(int i=0;i<20;i++){
+                ShowTest showTest=new ShowTest();
                 Test3 test3=test3Service.queryTest3ById(Integer.parseInt(testCode[i]));
                 showTest.setAdminId(test3.getAdminId());
                 showTest.setAnswerA(test3.getAnswerA());
@@ -110,7 +116,7 @@ public class AnswerRecordController {
                 tList.add(showTest);
             }
         }
-        }
+
 
         model.addAttribute("test",tList);
         return "listAnswer";

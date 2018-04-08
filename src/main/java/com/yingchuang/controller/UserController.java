@@ -2,6 +2,7 @@ package com.yingchuang.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
+import com.yingchuang.command.MD5.MD5;
 import com.yingchuang.entity.Users;
 import com.yingchuang.service.UserService;
 import com.yingchuang.util.Message;
@@ -32,7 +33,9 @@ public class UserController {
 //    用户登录
     @RequestMapping(value = "loginUser",method = RequestMethod.POST)
     public String login(String username, String password, HttpSession session, Model model) {
-        Users loginUser = userService.queryUserByUserNameAndPassword(username,password);
+        MD5 md5=new MD5();
+        String pwd=md5.getMd5(password,15);
+        Users loginUser = userService.queryUserByUserNameAndPassword(username,pwd);
             if (loginUser.getStatus().equals(0)) {
                 session.removeAttribute("loginAdmin");
                 session.setAttribute("loginUser", loginUser);

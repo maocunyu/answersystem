@@ -22,9 +22,9 @@
             $("button[name=saveAddUserButton]").click(function () {
                 var userName = $("#userName").val();
                 var password = $("#password").val();
-                var userCode = $("#userCode").val();
+
                 var phoneNum = $("#phoneNum").val();
-                if(userName == "" || password == "" || userCode == "" || phoneNum == "") {
+                if(userName == "" || password == ""  || phoneNum == "") {
                     alert("信息不完整，请填写！");
                     return false;
                 }
@@ -101,13 +101,6 @@
                                 <td>密码：</td>
                                 <td>
                                     <input type="password" class="form-control" name="password" id="password">
-                                </td>
-                                <td><h2></h2></td>
-                            </tr>
-                            <tr>
-                                <td>学号：</td>
-                                <td>
-                                    <input type="text" class="form-control" name="userCode" id="userCode">
                                 </td>
                                 <td><h2></h2></td>
                             </tr>

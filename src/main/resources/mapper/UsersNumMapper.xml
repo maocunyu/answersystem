@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yingchuang.dao.UsersNumMapper">
     <select id="queryUsersNum" resultType="Integer">
-        SELECT userNum FROM usersnum
+        SELECT usersNum FROM usersnum where id=1
     </select>
     
     <update id="updateUsersNum">

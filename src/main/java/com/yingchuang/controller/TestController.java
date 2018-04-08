@@ -44,7 +44,7 @@ public class TestController {
 
 
     @ResponseBody
-    @RequestMapping(value = "queryTest1ByTestAndPower",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value = "queryTest0ByTestAndPower",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
     public String queryTest1ByTest(Integer power,String ids,Model model) {
         if (power != null) {
             return JSON.toJSONString(getTest1(power,ids));
@@ -54,7 +54,7 @@ public class TestController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "queryTest2ByTestAndPower",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value = "queryTest1ByTestAndPower",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
     public String queryTest2ByTest(Integer power,String ids,Model model) {
         if (power != null) {
             return JSON.toJSONString(getTest2(power,ids));
@@ -64,7 +64,7 @@ public class TestController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "queryTest3ByTestAndPower",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value = "queryTest2ByTestAndPower",method = RequestMethod.GET,produces = {"application/json;charset=utf-8"})
     public String queryTest3ByTest(Integer power,String ids,Model model) {
         if (power != null) {
             return JSON.toJSONString(getTest3(power, ids));

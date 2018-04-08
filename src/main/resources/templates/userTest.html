@@ -21,7 +21,7 @@
             //开始答题
             $("button[name=testButton]").click(function () {
                 var id = $("#testStyle option:selected").val();
-                if(id==0) {
+                if(id==-1) {
                     alert("请选择试题类型");
                     return false;
                 }
@@ -116,7 +116,8 @@
             
             //提交答案
             $("button[name=submitButton]").click(function () {
-                
+                alert("您的分数为" + score);
+                location.href = location.href;
             })
         })
     </script>
@@ -130,14 +131,14 @@
             <h3>答题页面</h3>
                 <div class="col-md-4 col-md-offset-3">
                     <select class="form-control" id="testStyle" name="testStyle">
-                        <option value="0">请选择试题类型</option>
-                        <option value="1">test1</option>
-                        <option value="2">test2</option>
-                        <option value="3">test3</option>
+                        <option value="-1">请选择试题类型</option>
+                        <option value="0">test1</option>
+                        <option value="1">test2</option>
+                        <option value="2">test3</option>
                     </select>
                 </div>
                 <button name="testButton" class="btn btn-info">开始答题</button>
-                <button name="submitButton" class="btn btn-info">提交答案</button>
+                <button name="submitButton" class="btn btn-info" th:value="${session.loginUser.id}">提交答案</button>
                 <div>
                     <h3>第<span id="spanNum"></span>题</h3>
                     <textarea class="form-control" rows="3" id="question" readonly></textarea>

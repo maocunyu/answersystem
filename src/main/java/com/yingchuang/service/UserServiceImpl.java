@@ -3,6 +3,7 @@ package com.yingchuang.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yingchuang.command.AutoCode;
+import com.yingchuang.command.MD5.MD5;
 import com.yingchuang.dao.UserMapper;
 import com.yingchuang.dao.UsersNumMapper;
 import com.yingchuang.entity.Users;
@@ -32,8 +33,13 @@ public class UserServiceImpl implements UserService {
     public Integer addUser(Users users) {
         AutoCode autoCode=new AutoCode();
         usersNumMapper.updateUsersNum();
-        String userCode=autoCode.autoUsersCode(users,usersNumMapper.queryUsersNum());
+        Integer userNum=usersNumMapper.queryUsersNum();
+        String userCode=autoCode.autoUsersCode(users,userNum);
         users.setUserCode(userCode);
+        String pwd=users.getPassword();
+        MD5 md5=new MD5();
+        String password=md5.getMd5(pwd,15);
+        users.setPassword(password);
         return userMapper.addUser(users);
     }
 
