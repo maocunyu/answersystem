@@ -22,7 +22,8 @@ public class Test1ServiceImpl implements Test1Service {
 
     @Override
     public int addTest1(Test1 test1) {
-//        test1.setQuestionCode(autoCode.autoTest1Code(test1));
+        String testCode=autoCode.autoTest1Code(test1);
+        test1.setQuestionCode(testCode);
         return test1Mapper.addTest1(test1);
     }
 

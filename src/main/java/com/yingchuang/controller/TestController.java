@@ -95,12 +95,6 @@ public class TestController {
             }
             for (Test1 test11 : list) {
 
-
-
-
-
-
-
             }
         } else {
             for (Test1 test11 : list) {
