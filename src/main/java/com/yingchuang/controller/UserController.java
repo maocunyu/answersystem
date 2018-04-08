@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.yingchuang.entity.Users;
 import com.yingchuang.service.UserService;
-import com.yingchuang.service.UsersNumService;
 import com.yingchuang.util.Message;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,8 +23,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @Resource
-    private UsersNumService usersNumService;
     //首页
     @RequestMapping("toLoginUser")
     public String toLogin() {
@@ -79,7 +76,6 @@ public class UserController {
     public String addUser(Users users) {
         int rows = userService.addUser(users);
         if (rows > 0) {
-            usersNumService.updateUsersNum();
             return JSON.toJSONString(Message.success());
         }
         return JSON.toJSONString(Message.failed());
