@@ -81,6 +81,9 @@
                             $(":radio").attr("disabled", false);
                             $("#testStyle").attr("disabled", true);
                             $("button[name=testButton]").attr("disabled", true);
+                            /*每答一题 i增加1 第i道题*/
+                            i += 1;
+                            $("#spanNum").html(i);
                         })
                     })
                 }else {
@@ -95,6 +98,7 @@
                             $("#answerD").html(data.answerD);
                             $(":radio").attr("checked", false);
                             $("button[name=testButton]").attr("disabled", true);
+                            i += 1;
                             if(i == 21) {
                                 $("#spanNum").html(1);
                                 $("#question").val("");
@@ -105,13 +109,15 @@
                                 $(":radio").attr("disabled", true);
                                 $("button[name=submitButton]").attr("disabled", false);
                                 alert("请提交答案");
+                                i = 1;
                             }
+                            /*每答一题 i增加1 第i道题*/
+
+                            $("#spanNum").html(i);
                         })
                     })
                 }
-                /*每答一题 i增加1 第i道题*/
-                i += 1;
-                $("#spanNum").html(i);
+
             })
             
             //提交答案
@@ -183,6 +189,9 @@
                         </div>
                     </div>
                 </div>
+            <div style="position:fixed;width:100px;height:100px;left:190px;top:450px;">
+
+            </div>
         </div>
     </div>
 </div>

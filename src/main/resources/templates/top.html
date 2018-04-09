@@ -7,27 +7,35 @@
 <body>
     <div th:fragment="top">
         <div class="row">
-            <div th:if="${session.loginAdmin ne null}" class="col-md-4 col-md-offset-4">
-                <h2>答题管理系统</h2>
-            </div>
             <div th:if="${session.loginUser ne null}" class="col-md-4 col-md-offset-4">
                 <h2>答题系统</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div th:if="${session.loginUser ne null}" class="col-md-4 col-md-offset-8">
+                <h5>欢迎：<span th:text="${session.loginUser.userName}"></span></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div th:if="${session.loginUser ne null}" class="col-md-4 col-md-offset-8">
+                <h5><a th:href="@{/user/toLoginUser}">退出</a></h5>
+            </div>
+        </div>
+    </div>
+    <div th:fragment="topAdmin">
+        <div class="row">
+            <div th:if="${session.loginAdmin ne null}" class="col-md-4 col-md-offset-4">
+                <h2>答题管理系统</h2>
             </div>
         </div>
         <div class="row">
             <div th:if="${session.loginAdmin ne null}" class="col-md-4 col-md-offset-8">
                 <h5>欢迎：<span th:text="${session.loginAdmin.adminName}"></span></h5>
             </div>
-            <div th:if="${session.loginUser ne null}" class="col-md-4 col-md-offset-8">
-                <h5>欢迎：<span th:text="${session.loginUser.userName}"></span></h5>
-            </div>
         </div>
         <div class="row">
             <div th:if="${session.loginAdmin ne null}" class="col-md-4 col-md-offset-8">
                 <h5><a th:href="@{/admin/toLogin}">退出</a></h5>
-            </div>
-            <div th:if="${session.loginUser ne null}" class="col-md-4 col-md-offset-8">
-                <h5><a th:href="@{/user/toLoginUser}">退出</a></h5>
             </div>
         </div>
     </div>

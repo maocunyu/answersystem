@@ -38,7 +38,6 @@ public class UserController {
         Users loginUser = userService.queryUserByUserNameAndPassword(username,pwd);
         if (loginUser != null) {
             if (loginUser.getStatus().equals(0)) {
-                session.removeAttribute("loginAdmin");
                 session.setAttribute("loginUser", loginUser);
                 return "user";
             } else {
