@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:insert="basic::basic"></div>
+    <script type="text/javascript">
+        $(function () {
+            //加载页面
+            var testCode = "";
+            var testAnswer = "";
+            var userAnswer = "";
+            var testStyle = "";
+            var ids = "";
+            var i = 1;
+            var score = 0;
+            var power = 1;
+            $("#spanNum").html(i);
+            $(":radio").attr("disabled", true);
+            $("button[name=submitButton]").attr("disabled", true);
+            //开始答题
+            $("button[name=testButton]").click(function () {
+                var id = $("#testStyle option:selected").val();
+                if(id==-1) {
+                    alert("请选择试题类型");
+                    return false;
+                }
+                $.get("/test/queryTest"+id+"ByTestAndPower",{"power":power,"ids":null},function (data) {
+                    $("#question").val(data.question);
+                    $("#testCode").val(data.id);
+                    $("#testAnswer").val(data.rightAnswer);
+                    $("#answerA").html(data.answerA);
+                    $("#radioA").val(0);
+                    $("#answerB").html(data.answerB);
+                    $("#radioB").val(1);
+                    $("#answerC").html(data.answerC);
+                    $("#radioC").val(2);
+                    $("#answerD").html(data.answerD);
+                    $("#radioD").val(3);
+                    $(":radio").attr("disabled", false);
+                    $("#testStyle").attr("disabled", true);
+                    $("button[name=testButton]").attr("disabled", true);
+                })
+            })
+
+            //添加记录 修改记录
+            $("input:radio").click(function () {
+                testCode = testCode + $("#testCode").val()+",";
+                testAnswer = testAnswer + $("#testAnswer").val()+",";
+                userAnswer = userAnswer + $(this).val()+",";
+                var userId = $("#userid").val();
+                testStyle = $("#testStyle option:selected").val();
+                var testAnswereq = $("#testAnswer").val();
+                var userAnswereq = $(this).val();
+                if(testAnswereq == userAnswereq) {
+                    score += 5;
+                    if(power < 9 ) {
+                        power++;
+                    }
+                }else{
+                    if(power > 1) {
+                        power -= 1;
+                    }
+                }
+                var answerForm = "testCode="+testCode+"&testAnswer="+testAnswer+"&userAnswer="+userAnswer+"&score="+score+"&userId="+userId+"&testStyle="+testStyle;
+                if (i == 1) {
+                    $.post("/test/addRedis",answerForm,function (data) {
+                        $.get("/test/queryTest"+testStyle+"ByTestAndPower",{"power":power,"ids":testCode},function (data) {
+                            $("#question").val(data.question);
+                            $("#testCode").val(data.id);
+                            $("#testAnswer").val(data.rightAnswer);
+                            $("#answerA").html(data.answerA);
+                            $("#radioA").val(0);
+                            $("#answerB").html(data.answerB);
+                            $("#radioB").val(1);
+                            $("#answerC").html(data.answerC);
+                            $("#radioC").val(2);
+                            $("#answerD").html(data.answerD);
+                            $("#radioD").val(3);
+                            $(":radio").attr("checked", false);
+                            $(":radio").attr("disabled", false);
+                            $("#testStyle").attr("disabled", true);
+                            $("button[name=testButton]").attr("disabled", true);
+                            /*每答一题 i增加1 第i道题*/
+                            i += 1;
+                            $("#spanNum").html(i);
+                        })
+                    })
+                }else {
+                    $.post("/test/updateRedis",answerForm,function () {
+                        $.get("/test/queryTest"+testStyle+"ByTestAndPower",{"power":power,"ids":testCode},function (data) {
+                            $("#question").val(data.question);
+                            $("#testCode").val(data.id);
+                            $("#testAnswer").val(data.rightAnswer);
+                            $("#answerA").html(data.answerA);
+                            $("#answerB").html(data.answerB);
+                            $("#answerC").html(data.answerC);
+                            $("#answerD").html(data.answerD);
+                            $(":radio").attr("checked", false);
+                            $("button[name=testButton]").attr("disabled", true);
+                            i += 1;
+                            if(i == 21) {
+                                $("#spanNum").html(1);
+                                $("#question").val("");
+                                $("#answerA").html("");
+                                $("#answerB").html("");
+                                $("#answerC").html("");
+                                $("#answerD").html("");
+                                $(":radio").attr("disabled", true);
+                                $("button[name=submitButton]").attr("disabled", false);
+                                alert("请提交答案");
+                                i = 1;
+                            }
+                            $("#spanNum").html(i);
+                        })
+                    })
+                }
+
+            })
+            
+            //提交答案
+            $("button[name=submitButton]").click(function () {
+                alert("您的分数为" + score);
+                location.href = location.href;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    <div th:insert="top::top"></div>
+    <div class="row">
+        <div th:insert="userLeft"></div>
+        <div class="col-md-8">
+            <h3>答题页面</h3>
+                <div class="col-md-4 col-md-offset-3">
+                    <select class="form-control" id="testStyle" name="testStyle">
+                        <option value="-1">请选择试题类型</option>
+                        <option value="0">test1</option>
+                        <option value="1">test2</option>
+                        <option value="2">test3</option>
+                    </select>
+                </div>
+                <button name="testButton" class="btn btn-info">开始答题</button>
+                <button name="submitButton" class="btn btn-info" th:value="${session.loginUser.id}">提交答案</button>
+                <div>
+                    <h3>第<span id="spanNum"></span>题</h3>
+                    <textarea class="form-control" rows="3" id="question" readonly></textarea>
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="radio">
+                            <label>
+                                <div>
+                                    <!--题的id-->
+                                    <input type="hidden" name="testCode" id="testCode">
+                                    <!--题的正确答案-->
+                                    <input type="hidden" name="testAnswer" id="testAnswer">
+                                    <!--用户id-->
+                                    <input type="hidden" name="userid" id="userid" th:value="${session.loginUser.id}">
+                                    <input type="radio" name="answer" id="radioA"><span>A:</span>
+                                    <span id="answerA" name="answerA"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <div>
+                                    <input type="radio" name="answer" id="radioB"><span>B:</span>
+                                    <span id="answerB" name="answerB"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <div>
+                                    <input type="radio" name="answer" id="radioC"><span>C:</span>
+                                    <span id="answerC" name="answerC"></span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <div>
+                                    <input type="radio" name="answer" id="radioD"><span>D:</span>
+                                    <span id="answerD" name="answerD"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            <div style="position:fixed;width:100px;height:100px;left:190px;top:450px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:insert="basic::basic"></div>
+</head>
+<script type="text/javascript">
+    $(function () {
+        $("#upload").click(function () {
+            $.ajax({
+                type:"post",
+                dataType:"json",
+                data:$("#uploadForm").serialize(),
+                url:"/test/uploadTest",
+                success:function (data) {
+                    alert(data.msg);
+                }
+            })
+            location.href = location.href;
+        })
+
+    })
+</script>
+
+<body>
+<div class="container">
+    <div th:insert="top::topAdmin"></div>
+    <div class="row">
+        <div th:insert="left"></div>
+        <div class="col-md-8">
+            <form id="uploadForm">
+                <select class="form-control" id="testStyle" name="teststyle">
+                    <option value="-1">请选择试题类型</option>
+                    <option value="0">test1</option>
+                    <option value="1">test2</option>
+                    <option value="2">test3</option>
+                </select>
+                <div class="form-group">
+                    题目
+                    <input type="text" class="form-control" name="question" placeholder="Text input">
+                </div>
+                <div class="form-group">
+                    选项A
+                    <input type="text" class="form-control" name="answerA" placeholder="Text input">
+                </div>
+                <div class="form-group">
+                    选项B
+                    <input type="text" class="form-control" name="answerB" placeholder="Text input">
+                </div>
+                <div class="form-group">
+                    选项C
+                    <input type="text" class="form-control" name="answerC" placeholder="Text input">
+                </div>
+                <div class="form-group">
+                    选项D
+                    <input type="text" class="form-control" name="answerD" placeholder="Text input">
+                </div>
+                <select class="form-control" name="power">
+                    <option>请选择试题等级</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <select class="form-control" name="rightAnswer">
+                    <option>请选择正确答案</option>
+                    <option value="0">A</option>
+                    <option value="1">B</option>
+                    <option value="2">C</option>
+                    <option value="3">D</option>
+                </select>
+                <button type="button" class="btn btn-default" id="upload">提交</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

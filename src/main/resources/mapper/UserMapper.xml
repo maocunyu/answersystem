@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingchuang.dao.UserMapper">
+    <resultMap id="userMap" type="Users">
+        <id property="id" column="id"/>
+        <result property="userName" column="username"/>
+        <result property="phoneNum" column="phonenum"/>
+        <result property="loginTime" column="logintime"/>
+    </resultMap>
+
+    <select id="queryUserByUserNameAndPassword" resultMap="userMap" parameterType="String">
+        SELECT * FROM users WHERE username=#{userName} AND PASSWORD=#{password}
+    </select>
+
+    <insert id="addUser" parameterType="Users">
+        INSERT INTO users VALUES(NULL,#{userName},#{password},#{userCode},#{phoneNum},NOW(),0)
+    </insert>
+
+    <update id="updatePasswordByPhone" parameterType="String">
+        UPDATE users SET PASSWORD=#{password} WHERE phonenum=#{phoneNum}
+    </update>
+
+    <select id="queryUser" resultMap="userMap">
+        select * from users order by id desc
+    </select>
+
+    <select id="queryUserById" resultMap="userMap" parameterType="Integer">
+        select * from users where id=#{id}
+    </select>
+
+    <update id="updateUserById" parameterType="Users">
+        update users set status=#{status} where id =#{id}
+    </update>
+    
+    <select id="queryAllUserid" resultType="Integer">
+        SELECT id FROM users
+    </select>
+    
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yingchuang.dao.AnswerrecordMapper">
+
+    <resultMap id="AnMap" type="com.yingchuang.entity.AnswerRecord">
+        <result property="id" column="id"></result>
+        <association property="users" javaType="com.yingchuang.entity.Users"></association>
+    </resultMap>
+   <select id="queryAnswerRecordById" resultMap="AnMap">
+       SELECT * FROM answerrecord a,users u WHERE userid=#{userid} ORDER BY TIME DESC
+   </select>
+    <insert id="addAnswerrecord" parameterType="com.yingchuang.entity.AnswerRecord">
+     INSERT INTO answerrecord VALUES(NULL,#{testCode},#(testAnswer),#{userAnswer},#{score},#{users.id},NOW(),#{testStyle})
+    </insert>
+</mapper>

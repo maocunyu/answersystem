@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:insert="basic::basic"></div>
+    <script type="text/javascript">
+        $(function () {
+            $("button[name=updateButton]").click(function () {
+                var id = $(this).attr("no");
+                $.get("/admin/queryAdminById",{"id":id},function (data) {
+                    $("#updateAdminCode").val(data.adminCode);
+                    $("input[name='status']").prop("checked",false);
+                    $("input[name='status'][value='"+data.status+"']").prop("checked",true)
+                    var status = $('input[name="status"]:checked').val();
+                    $("#status").val(status);
+                    $("#updateId").val(id);
+                })
+                $("#updateAdminModal").modal("show");
+            })
+
+            $("button[name=saveUpdateAdminButton]").click(function () {
+                var admin = $("#updateAdminForm").serialize();
+                $.post("/admin/updateAdminStatusById",admin,function (data) {
+                    alert(data.msg);
+                    location.href = location.href;
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="container">
+    <div th:insert="top::topAdmin"></div>
+    <div class="row">
+        <div th:insert="left"></div>
+        <div class="col-md-8">
+            <h3>内部人员</h3>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>名称</td>
+                    <td>权限</td>
+                    <td>时间</td>
+                    <td>编号</td>
+                    <td>状态</td>
+                    <td>操作</td>
+                </tr>
+                <tr th:each="admin:${pageInfo.list}">
+                    <td th:text="${admin.adminName}"></td>
+                    <td>
+                        <span th:if="${admin.power eq 0}">超级管理员</span>
+                        <span th:if="${admin.power eq 1}">管理员</span>
+                        <span th:if="${admin.power eq 2}">审核员</span>
+                    </td>
+                    <td th:text="${#dates.format(admin.aloginTime,'yyyy-MM-dd hh:mm:ss')}"></td>
+                    <td th:text="${admin.adminCode}"></td>
+                    <td>
+                        <span th:if="${admin.status eq 0}">正常</span>
+                        <span th:if="${admin.status eq 1}">冻结</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" th:no="${admin.id}" name="updateButton">修改</button>
+                    </td>
+                </tr>
+            </table>
+            <div th:insert="page::page"></div>
+        </div>
+    </div>
+</div>
+
+<!--修改内部人员-->
+<div class="modal fade" tabindex="-1" role="dialog" id="updateAdminModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改状态</h4>
+            </div>
+            <form class="form-horizontal" id="updateAdminForm">
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td>员工编号：</td>
+                            <td>
+                                <input type="text" id="updateAdminCode" name="adminCode">
+                                <input type="hidden" id="updateId" name="id">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>状态：</td>
+                            <td>
+                                <input type="radio" name="status" value="0">激活
+                                <input type="radio" name="status" value="1">冻结
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" name="saveUpdateAdminButton">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>
