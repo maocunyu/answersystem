@@ -36,14 +36,18 @@ public class UserController {
         MD5 md5=new MD5();
         String pwd=md5.getMd5(password,15);
         Users loginUser = userService.queryUserByUserNameAndPassword(username,pwd);
+        if (loginUser != null) {
             if (loginUser.getStatus().equals(0)) {
                 session.removeAttribute("loginAdmin");
                 session.setAttribute("loginUser", loginUser);
-                    return "user";
-            }else{
-            model.addAttribute("msg", "该账号已冻结");
-            return "userLogin";
+                return "user";
+            } else {
+                model.addAttribute("msg", "该账号已冻结");
+                return "userLogin";
+            }
         }
+        model.addAttribute("msg", "用户名或密码错误");
+        return "userLogin";
     }
 
 //    查询所有
