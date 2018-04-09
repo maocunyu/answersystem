@@ -43,7 +43,7 @@ public class RedisUpdateMysql {
             }
         }
     }
-    @Scheduled(cron = "0/5 * * * * *")
+    @Scheduled(cron = "* * * 1 * *")
     public void UpdateMySql(){
         List<RedisAnswerRecord> list=redisAnswerRecordService.queryAllAnswerRecord();
         for (RedisAnswerRecord redisAnswerRecord : list) {
